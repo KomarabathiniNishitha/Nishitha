@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class DiscountCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get inputs
+        System.out.print("Enter your membership status (premium/non-premium): ");
+        String membershipStatus = scanner.next();
+        System.out.print("Enter your total purchase amount: ");
+        double purchaseAmount = scanner.nextDouble();
+
+        // Calculate discount
+        double finalAmount = calculateFinalAmount(membershipStatus, purchaseAmount);
+
+        // Display result
+        System.out.println("The final amount after discount (if applicable) is: " + finalAmount);
+    }
+
+    public static double calculateFinalAmount(String membershipStatus, double purchaseAmount) {
+        double discount = 0;
+
+        if (membershipStatus.equalsIgnoreCase("premium") && purchaseAmount > 1000) {
+            discount = 0.20;
+        } else if (membershipStatus.equalsIgnoreCase("non-premium") && purchaseAmount > 2000) {
+            discount = 0.15;
+        }
+
+        return purchaseAmount - (purchaseAmount * discount);
+    }
+}
